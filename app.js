@@ -8,10 +8,18 @@ const token = '7992238831:AAEDUmQuPjqK8vzIOTbVS5OQELhaIJ7JOdo';
 
 const bot = new Telegrambot(token, {polling: true})
 
+const chatIDStorage = [];
+
 
 bot.onText(/\/start/ , (msg,match) => {
     const chatid = msg.chat.id;
     const resp = match[1];
+
+    if(!chatIDStorage.includes(chatid)){
+        chatIDStorage.push(chatid);
+    }
+
+
     bot.sendMessage(chatid, "Welcome to CodeDaily Bot Made By Sachin Mehta");
 });
 
@@ -63,12 +71,6 @@ bot.onText(/\/challenge/,(msg,match) => {
 
     const randomchallenege = challenges[Math.floor(Math.random() * challenges.length)]
 
-    
-
-    
-    
-
-
    bot.sendMessage(chatid, randomchallenege);
 
     
@@ -76,13 +78,17 @@ bot.onText(/\/challenge/,(msg,match) => {
 })
 
 
-cron.schedule(' 0 28 19 1-31 1-12 1-7', () => {
+cron.schedule(' 0 41 19 * * *', () => {
     
     const randomchallenege = challenges[Math.floor(Math.random() * challenges.length)]
 
-    const chatid = msg.chat.id;
+    chatIDStorage.forEach(chatid => {
 
-    bot.sendMessage(chatid, randomchallenege);
+        bot.sendMessage(chatid, randomchallenege); 
+
+    })
+
+    
    })
 
 
