@@ -61,19 +61,30 @@ bot.onText(/\/challenge/,(msg,match) => {
     const resp = match[1];
     
 
+    const randomchallenege = challenges[Math.floor(Math.random() * challenges.length)]
 
-   cron.schedule('58,16,1-31,1-12,1-7', () => {
+    
 
-    const chatid = msg.chat.id;
+    
+    
 
-   const randomchallenege = challenges[Math.floor(Math.random() * challenges.length)]
 
-    bot.sendMessage(chatid, randomchallenege);
-   })
+   bot.sendMessage(chatid, randomchallenege);
 
     
    
 })
+
+
+cron.schedule(' * 7 19 1-31 1-12 1-7', () => {
+    
+    const randomchallenege = challenges[Math.floor(Math.random() * challenges.length)]
+
+    const chatid = msg.chat.id;
+
+    bot.sendMessage(chatid, randomchallenege);
+   })
+
 
 
 
