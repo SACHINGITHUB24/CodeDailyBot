@@ -78,10 +78,11 @@ bot.onText(/\/challenge/,(msg,match) => {
 })
 
 
-cron.schedule(' 0 41 19 * * *', () => {
+cron.schedule(' 0 55 19 * * *', () => {
     
     const randomchallenege = challenges[Math.floor(Math.random() * challenges.length)]
 
+    if (chatIDStorage.length > 0) {
     chatIDStorage.forEach(chatid => {
 
         bot.sendMessage(chatid, randomchallenege); 
