@@ -76,7 +76,7 @@ bot.onText(/\/challenge/,(msg,match) => {
 })
 
 
-cron.schedule(' * 7 19 1-31 1-12 1-7', () => {
+cron.schedule(' 0 15 19 1-31 1-12 1-7', () => {
     
     const randomchallenege = challenges[Math.floor(Math.random() * challenges.length)]
 
